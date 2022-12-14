@@ -1,3 +1,5 @@
 .DS_Store
 training_neural_network/.DS_Store
 pip-env
+__pycache__
+node_modules
