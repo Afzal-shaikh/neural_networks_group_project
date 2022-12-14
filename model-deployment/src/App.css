@@ -1,0 +1,32 @@
+.root-container{
+    padding: 20px;
+}
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.btn-container button{
+    margin: 10px;
+    padding: 10px;
+    min-width: 150px;
+}
+.btn-container-center{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-container-center button{
+    padding: 20px;
+}
+.MuiCircularProgress-root{
+    height: 200px !important;
+    width: 200px !important;
+}
+.predicted{
+    color: #f44336;
+}
+.loader{
+    position: absolute;
+    left: 45%;
+    top: 45%;
+}
