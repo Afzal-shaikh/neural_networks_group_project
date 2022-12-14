@@ -22,22 +22,6 @@ def get_sklearn_preprocessing_pipeline() -> Pipeline:
   pipline = load(sklearn_pipeline_path)
   return pipline
 
-def get_full_pipeline() -> Pipeline:
-  preprocessing_pipeline = get_sklearn_preprocessing_pipeline()
-
-  tf_model = get_tensorflow_model()
-  tf_model = KerasRegressor(tf_model)
-
-  full_pipeline = Pipeline([
-    ('preprocess', preprocessing_pipeline),
-    ('clf', tf_model)
-  ])
-
-  return full_pipeline
-
-
-full_pipeline = get_full_pipeline()
-
 
 def predict(first_term_gpa, second_term_gpa, first_language, funding_numeric, school_numeric,
             fasttrack_numeric, coop_numeric, residency_numeric, gender_numeric, previous_education,
@@ -48,4 +32,9 @@ def predict(first_term_gpa, second_term_gpa, first_language, funding_numeric, sc
     age_group, high_school_average, math_score, english_grade
   ])
   inp = inp.reshape((1, 14))
-  return full_pipeline.predict(inp)
+
+  preprocessed = get_sklearn_preprocessing_pipeline().transform(inp)
+
+  clf = get_tensorflow_model()
+  
+  return clf.predict(preprocessed)
